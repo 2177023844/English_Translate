@@ -1,0 +1,30 @@
+{
+  "name": "english-translate",
+  "private": true,
+  "version": "0.1.0",
+  "description": "果冻学英语 —— 个人英语学习网站（四六级 + 考研）",
+  "workspaces": [
+    "client",
+    "server",
+    "scripts"
+  ],
+  "scripts": {
+    "dev": "concurrently -n server,client -c blue,green \"npm run dev -w server\" \"npm run dev -w client\"",
+    "build": "npm run build -w client && npm run build -w server",
+    "seed": "npm run seed -w scripts",
+    "import:papers": "npm run import:papers -w scripts --",
+    "start": "node server/dist/index.js",
+    "tunnel": "node scripts/tunnel.mjs",
+    "tunnel:fixed": "node scripts/setup-fixed-tunnel.mjs"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.0"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "allowScripts": {
+    "better-sqlite3@11.10.0": true,
+    "esbuild@0.28.2": true
+  }
+}
